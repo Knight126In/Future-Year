@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Future-Year</title>
+  <meta name="description" content="Predict the next year with absurd ALU logic. The dumbest smart site online.">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      color: #333;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 200px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      color: green;
+      min-height: 40px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .fade-in {
+      opacity: 1 !important;
+    }
+    .spinner {
+      margin: 20px auto;
+      width: 40px;
+      height: 40px;
+      border: 5px solid #ccc;
+      border-top: 5px solid #007bff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Future-Year</h1>
+  <p>Predicts what the next year is using complex ALU and quantum calculations</p>
+
+  <input type="number" id="currentYear" placeholder="Enter current year" />
+  <button onclick="predict()">Calculate</button>
+
+  <div class="spinner" id="spinner" style="display: none;"></div>
+  <div id="result"></div>
+
+  <script>
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
+    }
+
+    function predict() {
+      const year = parseInt(document.getElementById("currentYear").value);
+      const result = document.getElementById("result");
+      const spinner = document.getElementById("spinner");
+
+      if (isNaN(year)) {
+        result.textContent = "Please enter a valid year!";
+        result.classList.add("fade-in");
+        return;
+      }
+
+      const steps = [
+        "Calculating space-time quantum...",
+        "Running complex ALU instructions...",
+        "Optimizing memory registers...",
+        "Resolving potential time paradox...",
+        "Nullifying blackouts...",
+        "Finalizing warp matrix..."
+      ];
+
+      let i = 0;
+      result.textContent = steps[i];
+      speak(steps[i]);
+      result.classList.remove("fade-in");
+      void result.offsetWidth; // trigger reflow
+      result.classList.add("fade-in");
+      spinner.style.display = "block";
+
+      const interval = setInterval(() => {
+        i++;
+        if (i < steps.length) {
+          result.textContent = steps[i];
+          speak(steps[i]);
+          result.classList.remove("fade-in");
+          void result.offsetWidth;
+          result.classList.add("fade-in");
+        } else {
+          clearInterval(interval);
+          spinner.style.display = "none";
+          const answer = "✅ The next year is: " + (year + 1);
+          result.textContent = answer;
+          result.classList.remove("fade-in");
+          void result.offsetWidth;
+          result.classList.add("fade-in");
+          speak(answer);
+        }
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
