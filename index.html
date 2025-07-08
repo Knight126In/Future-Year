@@ -47,20 +47,37 @@
   <div id="result"></div>
 
   <script>
-    function predict() {
-      const year = parseInt(document.getElementById("currentYear").value);
-      const result = document.getElementById("result");
-      if (isNaN(year)) {
-        result.textContent = "Please enter a valid year!";
-        return;
-      }
-      result.textContent = "Running complex ALU calculations...";
-      result.textContent = "Calculation Space-Time Quantum...";
-
-      setTimeout(() => {
-        result.textContent = "The next year is: " + (year + 1);
-      }, 4000); // Fake delay
+  function predict() {
+    const year = parseInt(document.getElementById("currentYear").value);
+    const result = document.getElementById("result");
+    if (isNaN(year)) {
+      result.textContent = "Please enter a valid year!";
+      return;
     }
+
+    const steps = [
+      "Calculating space-time quantum...",
+      "Running complex ALU instructions...",
+      "Optimizing memory registers...",
+      "Resolving potential time paradox...",
+      "Nullifying blackouts...",
+      "Finalizing warp matrix...",
+    ];
+
+    let i = 0;
+    result.textContent = steps[i];
+
+    const interval = setInterval(() => {
+      i++;
+      if (i < steps.length) {
+        result.textContent = steps[i];
+      } else {
+        clearInterval(interval);
+        result.textContent = "✅ The next year is: " + (year + 1);
+      }
+    }, 1000); // 1 second between steps
+  }
+
   </script>
 </body>
 </html>
