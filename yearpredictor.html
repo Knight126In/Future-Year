@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NextGen ChronoPredictor™</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center px-4">
+  <div class="text-center max-w-lg">
+    <h1 class="text-4xl font-bold mb-4 text-blue-400">🔮 NextGen ChronoPredictor™</h1>
+    <p class="mb-6 text-lg text-gray-300">Enter the current year and watch our patented AI-algorithm accurately predict the *next* one.</p>
+
+    <input id="yearInput" type="number" placeholder="Enter current year" class="px-4 py-2 text-black rounded w-48 mb-4" />
+    <br />
+    <button onclick="startPrediction()" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-bold text-white">
+      Predict Next Year
+    </button>
+
+    <div id="loading" class="mt-6 hidden text-yellow-400 font-mono text-sm animate-pulse">
+      Calculating temporal quantum shift... Please wait...
+    </div>
+
+    <div id="result" class="mt-6 text-2xl font-bold text-green-400 hidden"></div>
+  </div>
+
+  <script>
+    function startPrediction() {
+      const year = parseInt(document.getElementById("yearInput").value);
+      const loading = document.getElementById("loading");
+      const result = document.getElementById("result");
+
+      if (isNaN(year)) {
+        alert("Please enter a valid year!");
+        return;
+      }
+
+      // Reset
+      result.classList.add("hidden");
+      loading.classList.remove("hidden");
+      result.textContent = "";
+
+      // Simulate complex AI process (lol)
+      setTimeout(() => {
+        loading.textContent = "Running inter-dimensional simulations...";
+      }, 1000);
+
+      setTimeout(() => {
+        loading.textContent = "Calculating predictive quantum entropy...";
+      }, 2000);
+
+      setTimeout(() => {
+        loading.textContent = "Compiling future state models...";
+      }, 3000);
+
+      setTimeout(() => {
+        loading.classList.add("hidden");
+        result.classList.remove("hidden");
+        result.textContent = `🧠 Our AI predicts... ${year + 1}`;
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
